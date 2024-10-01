@@ -18,7 +18,7 @@ logger = getLogger(__name__)
 
 def download_html(url: str, *, session: Optional[requests.Session] = None) -> bytes:
     session = session or onlinejudge.utils.get_default_session()
-    resp = session.get(url)
+    resp = session.get(url, headers={'User-Agent': 'Mozilla/5.0'})
     logger.debug('HTTP response: %s', resp)
     resp.raise_for_status()
     return resp.content
